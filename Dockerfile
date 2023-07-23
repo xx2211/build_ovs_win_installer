@@ -125,7 +125,15 @@ RUN c:\BuildTools\VC\Auxiliary\Build\vcvarsall.bat x64 10.0.18362.0 `
     && msys2_shell.cmd -defterm -no-start -msys2 -use-full-path -c `
     "cd /c/TEMP/openvswitch-3.1.2/ && make windows_installer"
 
-CMD ["cmd", "echo", "Please installer and driver to host machine.",`
-    "&&", "echo", "ovs-windows-installer -> C:\TEMP\openvswitch-3.1.2\windows\ovs-windows-installer\bin\x64\Release\OpenvSwitch.msi",`
-    "&&", "echo", "driver: xxx",`
-    "&&", "pause"]
+RUN mkdir C:\TEMP\installer\driver
+RUN copy C:\TEMP\openvswitch-3.1.2\windows\ovs-windows-installer\bin\x64\Release\OpenvSwitch.msi C:\TEMP\installer\OpenvSwitch.msi
+RUN cd C:\TEMP\openvswitch-3.1.2\datapath-windows `
+    && copy x64\Win10Release\package\ovsext.inf c:\TEMP\installer\driver `
+    && copy x64\Win10Release\package\OVSExt.sys c:\TEMP\installer\driver `
+    && copy x64\Win10Release\package\ovsext.cat c:\TEMP\installer\driver `
+    && copy misc\*.cmd c:\TEMP\installer\driver
+
+# CMD ["cmd", "echo", "Please installer and driver to host machine.",`
+#     "&&", "echo", "ovs-windows-installer -> C:\TEMP\openvswitch-3.1.2\windows\ovs-windows-installer\bin\x64\Release\OpenvSwitch.msi",`
+#     "&&", "echo", "driver: xxx",`
+#     "&&", "pause"]
