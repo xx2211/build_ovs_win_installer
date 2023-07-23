@@ -2,13 +2,13 @@
 
 Note: 若不想自己构建，直接下载release中的installer.zip，然后进行`安装驱动和安装包`步骤即可
 
+### 下载安装docker for windows，并切换到 windows 容器
+
 ### 在docker中构建安装包和驱动，并把安装包和驱动从docker复制到主机
 
 执行下列命令(在cmd或docker中均可，其中docker cp命令可能需要管理员权限)
 
 note：第三行的D:\指定主机存放安装包和驱动的位置
-
-note：执行下面名需要把doker切换为winows容器
 
 ~~~bat
 docker build . -t ovs_installer
