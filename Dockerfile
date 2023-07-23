@@ -133,6 +133,8 @@ RUN cd C:\TEMP\openvswitch-3.1.2\datapath-windows `
     && copy x64\Win10Release\package\ovsext.cat c:\TEMP\installer\driver `
     && copy misc\*.cmd c:\TEMP\installer\driver
 
+RUN 7z a -tzip C:\TEMP\installer.zip C:\TEMP\installer\
+
 # CMD ["cmd", "echo", "Please installer and driver to host machine.",`
 #     "&&", "echo", "ovs-windows-installer -> C:\TEMP\openvswitch-3.1.2\windows\ovs-windows-installer\bin\x64\Release\OpenvSwitch.msi",`
 #     "&&", "echo", "driver: xxx",`

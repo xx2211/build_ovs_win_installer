@@ -1,48 +1,54 @@
-1. execute `docker build .` command.
-2. if command above is executed unsuccessfully, please execute it again unitl success.
-3. if command above is executed successfully, you will look output below
+note：一定要按顺序执行：先装驱动，再创建虚拟交换机，再开启ovs扩展，在双击安装包安装，顺序不对可能有问题
+
+### 在docker中构建安装包和驱动，并把安装包和驱动从docker复制到主机
+
+执行下列命令(在cmd或docker中均可，其中docker cp命令可能需要管理员权限)
+
+note：第三行的D:\指定主机存放安装包和驱动的位置
+
+note：执行下面名需要把doker切换为winows容器
+
+~~~bat
+docker build . -t ovs_installer
+docker create --name temp_installer ovs_installer
+docker cp temp_installer:C:\TEMP\installer.zip D:\
+docker rm temp_installer
 ~~~
-...
-...
- ---> 49b41ea92a81
-Successfully built 49b41ea92a81
-
-What's Next?
-  View summary of image vulnerabilities and recommendations → docker scout quickview
-~~~
-49b41ea92a81 is only an example. Each execution may be different and can be determined according to the actual execution result.
-4. 执行`xxx`把安装包从docker image复制到宿主机
 
 
+### 在主机中安装驱动
 
+解压D:\installer.zip
 
-
-
-#### 安装驱动
-
-note：从此处往后，若无特殊说明，命令皆在cmd下执行
+然后执行下面命令（在cmd或powershell中均可，需要管理员权限）
 
 ~~~cmd
-cd c:\TEMP\install_driver
+cd D:\installer\installer\driver
 uninstall.cmd
 install.cmd
 ~~~
 
 note: 关于安装未签名驱动以及给驱动签名 https://blog.csdn.net/muaxi8/article/details/111625191#:~:text=On%20the%20Windows%20login%20screen%20or%20under%20the,After%20your%20computer%20reboots%2C%20select%20the%20Troubleshoot%20option.
 
+### 在主机中安装ovs扩展到hyperv
 
-
+执行下列命令。需要再有管理员权限的powershell中执行。
+note：在执行命令前，你需要先把一个物理网卡改成英文名，下面的例子是 "phy_netcard"
 
 ~~~ps
 # 以太网是你要使用的物理网卡的名字
 New-VMSwitch "OVS-Extended-Switch" -NetAdapterName "phy_netcard"
 Enable-VMSwitchExtension "Open vSwitch Extension" OVS-Extended-Switch
-
 ~~~
 
-note：先装驱动，在创建虚拟交换机并开启ovs扩展，在双击安装包安装，顺序不对可能有问题
 
-### 使用
 
-安装完驱动后，直接双击生成好的安装包安装即可。
+### 安装ovs本体
+
+双击 D:\installer\installer\OpenvSwitch.msi 执行即可
+
+### 现在即可在主机中使用ovs
+
+
+
 
