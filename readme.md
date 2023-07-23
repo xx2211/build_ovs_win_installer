@@ -1,4 +1,7 @@
 # 构建安装包和驱动
+
+Note: 若不想自己构建，直接下载release中的installer.zip，然后进行`安装驱动和安装包`步骤即可
+
 ### 在docker中构建安装包和驱动，并把安装包和驱动从docker复制到主机
 
 执行下列命令(在cmd或docker中均可，其中docker cp命令可能需要管理员权限)
