@@ -30,7 +30,7 @@ uninstall.cmd
 install.cmd
 ~~~
 
-note: 关于安装未签名驱动以及给驱动签名 https://blog.csdn.net/muaxi8/article/details/111625191#:~:text=On%20the%20Windows%20login%20screen%20or%20under%20the,After%20your%20computer%20reboots%2C%20select%20the%20Troubleshoot%20option.
+note: 可能需要禁用驱动程序强制签名或者开启测试模式才能成功安装驱动
 
 ### 在主机中安装ovs扩展到hyperv
 
