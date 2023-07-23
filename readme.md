@@ -1,5 +1,4 @@
-note：一定要按顺序执行：先装驱动，再创建虚拟交换机，再开启ovs扩展，在双击安装包安装，顺序不对可能有问题
-
+# 构建安装包和驱动
 ### 在docker中构建安装包和驱动，并把安装包和驱动从docker复制到主机
 
 执行下列命令(在cmd或docker中均可，其中docker cp命令可能需要管理员权限)
@@ -15,6 +14,9 @@ docker cp temp_installer:C:\TEMP\installer.zip D:\
 docker rm temp_installer
 ~~~
 
+
+# 安装驱动和安装包
+note：一定要按顺序操作：先装驱动，再创建虚拟交换机，再开启ovs扩展，在双击安装包安装，顺序不对可能有问题
 
 ### 在主机中安装驱动
 
